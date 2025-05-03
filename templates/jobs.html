@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ role | capitalize }} Jobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">KHOJ <span>— Your Job Hunt Ends Here</span></div>
+        <div class="actions">
+            <button>Login/Register</button>
+            <button>For Employer</button>
+            <button class="post-job">Post Free Job</button>
+        </div>
+    </header>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section">
+        <h2>Jobs for {{ role | capitalize }}</h2>
+        
+        <div class="job-listings">
+            {% if jobs %}
+                {% for job in jobs %}
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <h4>{{ job.title }}</h4>
+                            <span class="company-name">{{ job.company }}</span>
+                        </div>
+                        <div class="job-card-body">
+                            <p><strong>Location:</strong> {{ job.location }}</p>
+                            <p><strong>Salary:</strong> {{ job.salary }}</p>
+                            <p><strong>Description:</strong> {{ job.description | truncate(100) }}</p>
+                        </div>
+                        <div class="job-card-footer">
+                            <button>Apply Now</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No jobs found for this role at the moment.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 KHOJ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+    </footer>
+
+    <!-- Script for responsiveness or interactivity -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

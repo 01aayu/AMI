@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KHOJ</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+  <header>
+    <div class="logo">KHOJ<span> — Your Job Hunt Ends Here</span></div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Jobs here (e.g. Driver)">
+      <button>Search</button>
+    </div>
+    <div class="actions">
+      <button>Login/Register</button>
+      <button>For Employer</button>
+      <button class="post-job">Post Free Job</button>
+    </div>
+  </header>
+
+  <section class="roles-section">
+    <h2>Choose a role</h2>
+    <div class="roles-grid">
+      <!--<div class="role">Data Entry / Back Office <span>(12200)</span></div> -->
+      <div class="role"><a href="/jobs/data-entry">Data Entry / Back Office <span>(12200)</span></a></div>
+      <div class="role">BPO / Telecaller <span>(28264)</span></div>
+      <div class="role">Delivery / Collections <span>(3241)</span></div>
+      <div class="role">Office Assistant / Helper <span>(7567)</span></div>
+      <div class="role">Driver <span>(3611)</span></div>
+      <div class="role">Sales <span>(6169)</span></div>
+      <div class="role">Teacher <span>(3001)</span></div>
+      <div class="role">Security Guard <span>(1684)</span></div>
+      <div class="role">Receptionist / Front Office <span>(4047)</span></div>
+      <div class="role">Electrician <span>(1533)</span></div>
+      <div class="role">Nurse <span>(2143)</span></div>
+      <div class="role">Beautician <span>(2472)</span></div>
+    </div>
+    <button class="show-all">Show all 111 roles</button>
+  </section>
+
+  <section class="ads-section">
+    <h3>Spotlight Ads</h3>
+    <div class="ads">
+      <div class="ad-card">
+        <h4>Driver Direct Walkin - 03-05-2025</h4>
+        <p>₹ 18000 - 20000 monthly<br>Full Time Jobs<br>Chennai</p>
+        <button>See details</button>
+      </div>
+      <div class="ad-card">
+        <h4>URGENT HIREING HELPERS || BALANA...</h4>
+        <p>₹ 15000 - 20000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <button>See details</button>
+      </div>
+      <div class="ad-card">
+        <h4>Car Drivers</h4>
+        <p>₹ 3000 - 45000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <button>See details</button>
+      </div>
+      <div class="ad-card">
+        <h4>Driver Direct Walkin - 03-05-2025</h4>
+        <p>₹ 18000 - 20000 monthly<br>Full Time Jobs<br>Chennai</p>
+        <button>See details</button>
+      </div>
+      <div class="ad-card">
+        <h4>URGENT HIREING HELPERS || BALANA...</h4>
+        <p>₹ 15000 - 20000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <button>See details</button>
+      </div>
+      <div class="ad-card">
+        <h4>Car Drivers</h4>
+        <p>₹ 3000 - 45000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <button>See details</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 KHOJ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+  </footer>
+  
+  <script src="index.js"></script>
+</body>
+</html>
