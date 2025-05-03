@@ -4,6 +4,187 @@
   <meta charset="UTF-8">
   <title>KHOJ</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .logo span {
+      font-weight: 400;
+      font-size: 16px;
+      color: #777;
+    }
+
+    .search-bar {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      margin: 0 20px;
+    }
+
+    .search-bar input {
+      padding: 10px 15px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+
+    .actions button {
+      margin-left: 15px;
+      padding: 10px 15px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background-color: #eee;
+    }
+
+    .actions .post-job {
+      background-color: #007bff;
+      color: white;
+    }
+
+    h2, h3 {
+      margin-left: 40px;
+      margin-top: 40px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px 40px;
+    }
+
+    .role {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .role:hover {
+      transform: translateY(-3px);
+    }
+
+    .role a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .role span {
+      display: block;
+      font-size: 14px;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    .show-all {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .ads {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px 40px;
+    }
+
+    .ad-card {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s;
+    }
+
+    .ad-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .ad-card h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .ad-card p {
+      font-size: 14px;
+      margin: 4px 0;
+      color: #555;
+    }
+
+    .ad-card button {
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: #f0f0f0;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #ddd;
+    }
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,27 +197,30 @@
     <div class="actions">
       <button>Login/Register</button>
       <button>For Employer</button>
-      <button class="post-job">Post Free Job</button>
+      <form action="/post-job" method="get">
+        <button class="post_job">Post Free Job</button>
+      </form>
     </div>
   </header>
 
   <section class="roles-section">
-    <h2>Choose a role</h2>
-    <div class="roles-grid">
-      <!--<div class="role">Data Entry / Back Office <span>(12200)</span></div> -->
-      <div class="role"><a href="/jobs/data-entry">Data Entry / Back Office <span>(12200)</span></a></div>
-      <div class="role">BPO / Telecaller <span>(28264)</span></div>
-      <div class="role">Delivery / Collections <span>(3241)</span></div>
-      <div class="role">Office Assistant / Helper <span>(7567)</span></div>
-      <div class="role">Driver <span>(3611)</span></div>
-      <div class="role">Sales <span>(6169)</span></div>
-      <div class="role">Teacher <span>(3001)</span></div>
-      <div class="role">Security Guard <span>(1684)</span></div>
-      <div class="role">Receptionist / Front Office <span>(4047)</span></div>
-      <div class="role">Electrician <span>(1533)</span></div>
-      <div class="role">Nurse <span>(2143)</span></div>
-      <div class="role">Beautician <span>(2472)</span></div>
-    </div>
+    <h2>Choose a Role</h2>
+    <!-- MODIFIED PART ONLY -->
+<div class="roles-grid">
+  <div class="role"><a href="/jobs/data-entry"><strong>Data Entry / Back Office <span>(12200)</span></strong></a></div>
+  <div class="role"><a href="/jobs/BPO"><strong>BPO / Telecaller <span>(28264)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Delivery"><strong>Delivery / Collections <span>(3241)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Helper"></a><strong>Office Assistant / Helper <span>(7567)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Driver"></a><strong>Driver <span>(3611)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Sales"></a><strong>Sales <span>(6169)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Teacher"></a><strong>Teacher <span>(3001)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Guard"></a><strong>Security Guard <span>(1684)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Receptionist"></a><strong>Receptionist / Front Office <span>(4047)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Electrician"></a><strong>Electrician <span>(1533)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Nurse"></a><strong>Nurse <span>(2143)</span></strong></a></div>
+  <div class="role"><a href="/jobs/Beautician"></a><strong>Beautician <span>(2472)</span></strong></a></div>
+</div>
+
     <button class="show-all">Show all 111 roles</button>
   </section>
 
@@ -45,32 +229,44 @@
     <div class="ads">
       <div class="ad-card">
         <h4>Driver Direct Walkin - 03-05-2025</h4>
-        <p>₹ 18000 - 20000 monthly<br>Full Time Jobs<br>Chennai</p>
+        <p>₹ 18000 - 20000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Chennai</p>
         <button>See details</button>
       </div>
       <div class="ad-card">
         <h4>URGENT HIREING HELPERS || BALANA...</h4>
-        <p>₹ 15000 - 20000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <p>₹ 15000 - 20000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Hyderabad</p>
         <button>See details</button>
       </div>
       <div class="ad-card">
         <h4>Car Drivers</h4>
-        <p>₹ 3000 - 45000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <p>₹ 3000 - 45000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Hyderabad</p>
         <button>See details</button>
       </div>
       <div class="ad-card">
         <h4>Driver Direct Walkin - 03-05-2025</h4>
-        <p>₹ 18000 - 20000 monthly<br>Full Time Jobs<br>Chennai</p>
+        <p>₹ 18000 - 20000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Chennai</p>
         <button>See details</button>
       </div>
       <div class="ad-card">
         <h4>URGENT HIREING HELPERS || BALANA...</h4>
-        <p>₹ 15000 - 20000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <p>₹ 15000 - 20000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Hyderabad</p>
         <button>See details</button>
       </div>
       <div class="ad-card">
         <h4>Car Drivers</h4>
-        <p>₹ 3000 - 45000 monthly<br>Full Time Jobs<br>Hyderabad</p>
+        <p>₹ 3000 - 45000 monthly</p>
+        <p>Full Time Jobs</p>
+        <p>Hyderabad</p>
         <button>See details</button>
       </div>
     </div>
@@ -79,7 +275,6 @@
   <footer>
     <p>&copy; 2025 KHOJ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
   </footer>
-  
-  <script src="index.js"></script>
+
 </body>
 </html>

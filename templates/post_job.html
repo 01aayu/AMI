@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post a Job</title>
+  <style>
+    /* Inherited Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #eef2f3, #8e9eab);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .form-container {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+      font-size: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      background-color: #f9f9f9;
+      color: #333;
+      width: 100%;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+    }
+
+    .salary-range,
+    .experience-range {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, #f39c12, #f1c40f);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.03);
+      background: linear-gradient(to right, #f1c40f, #f39c12);
+    }
+
+    @media (max-width: 768px) {
+      .salary-range,
+      .experience-range {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Post a Job</h2>
+    <form>
+      <label for="title">Job Title</label>
+      <input type="text" id="title" placeholder="e.g., Software Developer" required>
+
+      <label>Job Type</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="job_type" checked> Full Time</label>
+        <label><input type="checkbox" name="job_type"> Part Time</label>
+        <label><input type="checkbox" name="job_type"> Work From Home</label>
+        <label><input type="checkbox" name="job_type"> Internships</label>
+        <label><input type="checkbox" name="job_type"> Work Abroad</label>
+      </div>
+
+      <label for="role">Role</label>
+      <input type="text" id="role" placeholder="e.g., Frontend Developer" required>
+
+      <label for="salary">Monthly Salary</label>
+      <div class="salary-range">
+        <input type="number" placeholder="Min" required>
+        <input type="number" placeholder="Max" required>
+      </div>
+
+      <label for="experience">Experience</label>
+      <div class="experience-range">
+        <select required>
+          <option value="">Min</option>
+          {% for i in range(0,11) %}
+          <option value="{{ i }}">{{ i }} years</option>
+          {% endfor %}
+        </select>
+        <select required>
+          <option value="">Max</option>
+          {% for i in range(0,11) %}
+          <option value="{{ i }}">{{ i }} years</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <label for="city">City</label>
+      <input type="text" id="city" placeholder="Enter city" required>
+
+      <label for="localities">Localities (up to 5)</label>
+      <input type="text" id="localities" placeholder="Enter locality" required>
+
+      <label for="description">Job Description</label>
+      <textarea id="description" rows="5" maxlength="3000" placeholder="Write job description..." required></textarea>
+
+      <button type="submit" class="submit-btn">Post Job</button>
+    </form>
+  </div>
+</body>
+</html>
