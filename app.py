@@ -3,11 +3,15 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from dotenv import load_dotenv
 import os, json, logging
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb+srv://AMI:1234@cluster0.30in3.mongodb.net/")  # Replace with your MongoDB connection string
+load_dotenv()  # loads from .env by default
+
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)  # Replace with your MongoDB connection string
 db = client['jobs_db']  # Replace with your database name
 job_collection = db['job_seeker']  # Replace with the name of your collection
 
