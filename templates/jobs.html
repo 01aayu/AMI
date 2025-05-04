@@ -5,26 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ role | capitalize }} Jobs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/filter.css') }}">
+    <style>
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal h3 {
+    margin-top: 0;
+}
+
+.modal input, .modal textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal button:hover {
+    background-color: #21867a;
+}
+
+.close-btn {
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-btn:hover {
+    color: black;
+}
+    </style>
 </head>
 <body>
-
-    <!-- Header Section -->
     <header>
-        <div class="logo">KHOJ <span>— Your Job Hunt Ends Here</span></div>
-        <div class="actions">
-            <button>Login/Register</button>
-            <button>For Employer</button>
-            <button class="post-job">Post Free Job</button>
-        </div>
-    </header>
+            <div class="logo"> <a href="{{ url_for('home') }}">KHOJ <span>— Your Job Hunt Ends Here</span></a></div>
+            <div class="actions">
+              <a href="{{ url_for('login') }}"><button>Login/Register</button></a>
+              <form action="/form" method="get">
+                <button type="submit">Employee</button>
+            </form>
+              <form action="/post-job" method="get">
+                <button class="post_job">Post Free Job</button>
+              </form>
+            </div>
+          </header>
 
-    <!-- Jobs Section -->
     <section class="jobs-section">
         <h2>Jobs for {{ role | capitalize }}</h2>
-        
-        <div class="job-listings">
-            {% if jobs %}
-                {% for job in jobs %}
+
+        <div class="job-filter-container">
+            <div class="filter-panel">
+                <h3><i class="fas fa-filter"></i> Filter jobs</h3>
+            
+                <div class="filter-group">
+                    <label for="job-type-filter">Job Type</label>
+                    <div class="select-wrapper">
+                        <select id="job-type-filter" name="job_type" onchange="applyFilters()">
+                            <option value="">All Types</option>
+                            <option value="Work From Home" {% if request.args.get('job_type') == 'Work From Home' %}selected{% endif %}>Work From Home</option>
+                            <option value="Part Time Jobs" {% if request.args.get('job_type') == 'Part Time Jobs' %}selected{% endif %}>Part Time Jobs</option>
+                            <option value="Full Time Jobs" {% if request.args.get('job_type') == 'Full Time Jobs' %}selected{% endif %}>Full Time Jobs</option>
+                            <option value="Internships" {% if request.args.get('job_type') == 'Internships' %}selected{% endif %}>Internships</option>
+                            <option value="Work Abroad" {% if request.args.get('job_type') == 'Work Abroad' %}selected{% endif %}>Work Abroad</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+            
+                <div class="filter-group">
+                    <label for="location-filter">Location</label>
+                    <input type="text" id="location-filter" name="location" placeholder="Enter Location" value="{{ request.args.get('location', '') }}" onkeydown="handleLocationKey(event)">
+                </div>
+            
+                <div class="filter-group">
+                    <label for="salary-filter">Minimum Salary</label>
+                    <div class="select-wrapper">
+                        <select id="salary-filter" name="min_salary" onchange="applyFilters()">
+                            <option value="">Any</option>
+                            <option value="20000" {% if request.args.get('min_salary') == '20000' %}selected{% endif %}>₹20,000</option>
+                            <option value="30000" {% if request.args.get('min_salary') == '30000' %}selected{% endif %}>₹30,000</option>
+                            <option value="40000" {% if request.args.get('min_salary') == '40000' %}selected{% endif %}>₹40,000</option>
+                            <option value="50000" {% if request.args.get('min_salary') == '50000' %}selected{% endif %}>₹50,000+</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+            
+                <button onclick="clearFilters()">Clear Filters</button>
+            </div>
+            
+            <div class="job-listings">
+                {% if jobs %}
+                    {% for job in jobs %}
                     <div class="job-card">
                         <div class="job-card-header">
                             <h4>{{ job.title }}</h4>
@@ -33,25 +132,84 @@
                         <div class="job-card-body">
                             <p><strong>Location:</strong> {{ job.location }}</p>
                             <p><strong>Salary:</strong> {{ job.salary }}</p>
-                            <p><strong>Description:</strong> {{ job.description | truncate(100) }}</p>
+                            <p><strong>Type:</strong> {{ job.job_type }}</p>
+                            <p><strong>Posted:</strong> {{ job.posted_date }}</p>
+                            <p><strong>Description:</strong> {{ job.description | truncate(100) }}</p>                            
                         </div>
                         <div class="job-card-footer">
-                            <button>Apply Now</button>
+                            <button onclick="openModal('{{ job.id }}', '{{ job.title }}', '{{ job.company }}')">Apply Now</button>
                         </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>No jobs found for this role at the moment.</p>
-            {% endif %}
+                    </div>                    
+                    {% endfor %}
+                {% else %}
+                    <p>No jobs found matching your criteria.</p>
+                {% endif %}
+            </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 KHOJ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
     </footer>
 
-    <!-- Script for responsiveness or interactivity -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-b3/js/all.min.js"></script>
+    <script>
+        function applyFilters() {
+    const jobType = document.getElementById('job-type-filter').value;
+    const location = document.getElementById('location-filter').value;
+    const minSalary = document.getElementById('salary-filter').value;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+
+    const params = new URLSearchParams();
+    if (role) params.append("role", role);
+    if (jobType) params.append("job_type", jobType);
+    if (location) params.append("location", location);
+    if (minSalary) params.append("min_salary", minSalary);
+
+    window.location.href = `/jobs?${params.toString()}`;
+}
+
+        function handleLocationKey(event) {
+            if (event.key === 'Enter') {
+                applyFilters();
+            }
+        }
+        
+        function clearFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+    const newUrl = role ? `/jobs?role=${encodeURIComponent(role)}` : '/jobs';
+    window.location.href = newUrl;
+}
+        </script> 
+        
+        <!-- Modal Overlay -->
+<div class="modal-overlay" id="applyModal" style="display: none;">
+    <div class="modal">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <h3 id="modal-job-title">Apply for Job</h3>
+        <form id="applyForm" method="POST">
+            <input type="text" name="name" placeholder="Your Full Name" required>
+            <input type="tel" name="mobile" placeholder="Mobile Number" required>
+            <textarea name="address" placeholder="Your Address" rows="3" required></textarea>
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openModal(jobId, jobTitle, company) {
+        document.getElementById('applyModal').style.display = 'flex';
+        document.getElementById('modal-job-title').textContent = `Apply for ${jobTitle} at ${company}`;
+        document.getElementById('applyForm').action = `/apply/${jobId}`;
+    }
+    
+    function closeModal() {
+        document.getElementById('applyModal').style.display = 'none';
+    }
+    </script>    
+
 </body>
 </html>

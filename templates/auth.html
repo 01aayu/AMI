@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHOJ - Login/Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"> <a href="{{ url_for('home') }}">KHOJ <span>— Your Job Hunt Ends Here</a></span></div>
+        <div class="actions">
+          <a href="{{ url_for('login') }}"><button>Login/Register</button></a>
+          <form action="/form" method="get">
+            <button type="submit">Employee</button>
+        </form>
+          <form action="/post-job" method="get">
+            <button class="post_job">Post Free Job</button>
+          </form>
+        </div>
+      </header>
+
+    <main class="auth-container">
+        {% if form_type == 'login' %}
+            <div class="auth-card">
+                <h2>Login</h2>
+                {% if error %}
+                    <p class="error-message">{{ error }}</p>
+                {% endif %}
+                <form action="{{ url_for('handle_login') }}" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Login</button>
+                    <p class="auth-link">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+                </form>
+            </div>
+        {% elif form_type == 'register' %}
+            <div class="auth-card">
+                <h2>Register</h2>
+                {% if error %}
+                    <p class="error-message">{{ error }}</p>
+                {% endif %}
+                <form action="{{ url_for('handle_register') }}" method="post">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Register</button>
+                    <p class="auth-link">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+                </form>
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 KHOJ. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+      </footer>
+</body>
+</html>

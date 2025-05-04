@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+footer {
+    /* Restore the footer content, and ensure it spans the full width */
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    width: 100%;
+}
+
+footer {
+    background: #2c3e50;
+    color: #ddd;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+
+footer a {
+    color: #f39c12;
+    text-decoration: none;
+    margin: 0 0.4rem;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

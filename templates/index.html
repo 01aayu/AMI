@@ -60,19 +60,35 @@
     }
 
     .actions button {
-      margin-left: 15px;
-      padding: 10px 15px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      background-color: #eee;
-    }
+    background: #ffffff10;
+    border: 1px solid #ffffff40;
+    color: #fff;
+    padding: 0.7rem 1.4rem;
+    margin-left: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.95rem;
+}
 
-    .actions .post-job {
-      background-color: #007bff;
-      color: white;
-    }
+.actions button:hover {
+    background-color: #ffffff20;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.post-job {
+    background: #f39c12;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+}
+
+.post-job:hover {
+    background: #e08e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
 
     h2, h3 {
       margin-left: 40px;
@@ -169,34 +185,30 @@
       cursor: pointer;
     }
 
-    footer {
-      margin-top: 60px;
-      background: #f0f0f0;
-      padding: 20px 40px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-      border-top: 1px solid #ddd;
-    }
-
     footer a {
-      color: #007bff;
-      text-decoration: none;
-      margin: 0 5px;
-    }
-  </style>
+  color: #f39c12;
+  text-decoration: none;
+  margin: 0 0.4rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
 <body>
 
   <header>
-    <div class="logo">KHOJ<span> — Your Job Hunt Ends Here</span></div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search Jobs here (e.g. Driver)">
-      <button>Search</button>
-    </div>
+    <div class="logo"> <a href="{{ url_for('home') }}"> KHOJ<span> — Your Job Hunt Ends Here</span></a></div>
+    <form class="search-bar" action="/search" method="get" id="searchForm">
+      <input type="text" id="keyword" name="keyword" placeholder="Search Jobs here (e.g. Driver)">
+      <button type="submit">Search</button>
+    </form>
     <div class="actions">
-      <button>Login/Register</button>
-      <button>For Employer</button>
+      <a href="{{ url_for('login') }}"><button>Login/Register</button></a>
+      <form action="/form" method="get">
+        <button type="submit">Employee</button>
+    </form>
       <form action="/post-job" method="get">
         <button class="post_job">Post Free Job</button>
       </form>
@@ -207,21 +219,21 @@
     <h2>Choose a Role</h2>
     <!-- MODIFIED PART ONLY -->
 <div class="roles-grid">
-  <div class="role"><a href="/jobs/data-entry"><strong>Data Entry / Back Office <span>(12200)</span></strong></a></div>
-  <div class="role"><a href="/jobs/BPO"><strong>BPO / Telecaller <span>(28264)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Delivery"><strong>Delivery / Collections <span>(3241)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Helper"></a><strong>Office Assistant / Helper <span>(7567)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Driver"></a><strong>Driver <span>(3611)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Sales"></a><strong>Sales <span>(6169)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Teacher"></a><strong>Teacher <span>(3001)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Guard"></a><strong>Security Guard <span>(1684)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Receptionist"></a><strong>Receptionist / Front Office <span>(4047)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Electrician"></a><strong>Electrician <span>(1533)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Nurse"></a><strong>Nurse <span>(2143)</span></strong></a></div>
-  <div class="role"><a href="/jobs/Beautician"></a><strong>Beautician <span>(2472)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=data-center"><strong>Data Entry / Back Office <span>(12200)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=bpo"><strong>BPO / Telecaller <span>(28264)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=delivery"><strong>Delivery / Collections <span>(3241)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=helper"><strong>Office Assistant / Helper <span>(7567)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=driver"><strong>Driver <span>(3611)</span></strong></a></div>
+  <div class="role"><a href="{{ url_for('jobs') }}?role=sales"><strong>Sales <span>(6169)</span></strong></a></div>
+  <div class="role"><a href="/jobs/teacher"><strong>Teacher <span>(3001)</span></strong></a></div>
+  <div class="role"><a href="/jobs/guard"><strong>Security Guard <span>(1684)</span></strong></a></div>
+  <div class="role"><a href="/jobs/receptionist"><strong>Receptionist / Front Office <span>(4047)</span></strong></a></div>
+  <div class="role"><a href="/jobs/electrician"><strong>Electrician <span>(1533)</span></strong></a></div>
+  <div class="role"><a href="/jobs/nurse"><strong>Nurse <span>(2143)</span></strong></a></div>
+  <div class="role"><a href="/jobs/beautician"><strong>Beautician <span>(2472)</span></strong></a></div>
 </div>
 
-    <button class="show-all">Show all 111 roles</button>
+    <button class="show-all">Show more roles</button>
   </section>
 
   <section class="ads-section">
@@ -258,13 +270,6 @@
       <div class="ad-card">
         <h4>URGENT HIREING HELPERS || BALANA...</h4>
         <p>₹ 15000 - 20000 monthly</p>
-        <p>Full Time Jobs</p>
-        <p>Hyderabad</p>
-        <button>See details</button>
-      </div>
-      <div class="ad-card">
-        <h4>Car Drivers</h4>
-        <p>₹ 3000 - 45000 monthly</p>
         <p>Full Time Jobs</p>
         <p>Hyderabad</p>
         <button>See details</button>

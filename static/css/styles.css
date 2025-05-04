@@ -260,3 +260,153 @@ footer a:hover {
     font-size: 1.6rem;
   }
 }
+
+/* filter.css */
+
+.job-filter-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.filter-panel {
+  flex-basis: 300px;
+  flex-grow: 1;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.filter-panel h3 {
+  color: #333;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.select-wrapper {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.select-wrapper select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: none;
+  background-color: #fff;
+  appearance: none; /* Remove default arrow */
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #777;
+}
+
+.select-arrow::before {
+  content: "\25BC"; /* Down arrow */
+  font-size: 0.8rem;
+}
+
+.filter-group input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.filter-group input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff; /* Example focus color */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Example focus shadow */
+}
+
+.filter-panel button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.filter-panel button:hover {
+  background-color: #0056b3;
+}
+
+.job-listings {
+  flex-grow: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Responsive adjustments for the filter panel */
+@media (max-width: 960px) {
+  .job-filter-container {
+      flex-direction: column;
+  }
+
+  .filter-panel {
+      width: 100%;
+      margin-bottom: 1.5rem;
+  }
+
+  .job-listings {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-panel h3 {
+      font-size: 1.2rem;
+  }
+
+  .filter-group label {
+      font-size: 0.9rem;
+  }
+
+  .select-wrapper select,
+  .filter-group input[type="text"],
+  .filter-panel button {
+      font-size: 0.9rem;
+      padding: 0.6rem 0.8rem;
+  }
+}
