@@ -34,7 +34,6 @@ The system consists of three main parts:
 2.  Backend API: A Flask application that manages data in the database, handles user authentication, serves API endpoints for search, recommendations, and manual posting.
 3.  Frontend Web Application: The user interface built with HTML/CSS/JS that interacts with the backend API to display information and capture user input.
 
-*(You can optionally embed or link to the flowchart image ami.png here if included in your repository)*
 
 ## Setup and Installation
 
@@ -63,9 +62,9 @@ These are general steps. Adapt them based on your final project structure.
     * Configure the database connection string (see Configuration section).
     * Run database migrations if applicable (e.g., using Flask-Migrate):
         bash
-        ## flask db init  (if first time)
-        ## flask db migrate -m "Initial migration."
-        ## flask db upgrade
+         flask db init  (if first time)
+         flask db migrate -m "Initial migration."
+         flask db upgrade
         
 
 ## Configuration
