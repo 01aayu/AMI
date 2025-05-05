@@ -40,11 +40,7 @@ The system consists of three main parts:
 These are general steps. Adapt them based on your final project structure.
 
 1.  *Clone the repository:*
-    bash
-    git clone <your-repository-link>
-    cd khoj-project-directory
-    
-
+   
 2.  *Create and activate a virtual environment:*
     python -m venv venv
     ## On Windows
@@ -61,7 +57,6 @@ These are general steps. Adapt them based on your final project structure.
     * Ensure your chosen database (e.g., PostgreSQL) is installed and running.
     * Configure the database connection string (see Configuration section).
     * Run database migrations if applicable (e.g., using Flask-Migrate):
-        bash
          flask db init  (if first time)
          flask db migrate -m "Initial migration."
          flask db upgrade
@@ -72,7 +67,6 @@ These are general steps. Adapt them based on your final project structure.
 The application requires certain environment variables for configuration. Create a .env file in the root directory or set system environment variables:
 
 ## Flask Configuration
-## Or your main Flask app file
 FLASK_APP=run.py 
 ## Use 'production' for deployment
 FLASK_ENV=development
