@@ -56,7 +56,6 @@ These are general steps. Adapt them based on your final project structure.
     
 
 3.  *Install dependencies:*
-    bash
     pip install -r requirements.txt
     
 
@@ -75,12 +74,16 @@ These are general steps. Adapt them based on your final project structure.
 The application requires certain environment variables for configuration. Create a .env file in the root directory or set system environment variables:
 
 # Flask Configuration
-FLASK_APP=run.py # Or your main Flask app file
-FLASK_ENV=development # Use 'production' for deployment
-SECRET_KEY='your_strong_random_secret_key' # IMPORTANT: Change this!
+# Or your main Flask app file
+FLASK_APP=run.py 
+# Use 'production' for deployment
+FLASK_ENV=development
+# IMPORTANT: Change this!
+SECRET_KEY='your_strong_random_secret_key'
 
 # Database Configuration
-DATABASE_URL='postgresql://user:password@host:port/dbname' # Example for PostgreSQL
+DATABASE_URL='postgresql://user:password@host:port/dbname'
+# Example for PostgreSQL
 
 # LLM API Keys
 GROK_API_KEY='your_grok_api_key_here'
