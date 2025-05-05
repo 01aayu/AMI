@@ -86,5 +86,10 @@ DATABASE_URL='postgresql://user:password@host:port/dbname' # Example for Postgre
 GROK_API_KEY='your_grok_api_key_here'
 DEEPSEEK_API_KEY='your_deepseek_api_key_here'
 
-## Demo
+# Demo
 
+![WhatsApp Image 2025-05-04 at 09 03 24_3d67edaf](https://github.com/user-attachments/assets/d8528a49-0da6-4274-bdd6-de48a63a8229)
+![WhatsApp Image 2025-05-04 at 09 05 28_2a2e510f](https://github.com/user-attachments/assets/661054e1-f93e-438c-9ba0-ecd9df0a9174)
+![WhatsApp Image 2025-05-04 at 09 06 30_013bfff8](https://github.com/user-attachments/assets/1b2ec475-d0ba-4066-94ae-f8e510517f2a)
+![WhatsApp Image 2025-05-04 at 09 08 30_c043d775](https://github.com/user-attachments/assets/1a4ef91b-abe5-4cd3-a8a2-a47f75ce3ab2)
+![WhatsApp Image 2025-05-04 at 09 08 51_f8054bf4](https://github.com/user-attachments/assets/d6ae0fe1-1c56-4c2d-a456-c67fa4e1b679)
