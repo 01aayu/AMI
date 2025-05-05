@@ -47,11 +47,10 @@ These are general steps. Adapt them based on your final project structure.
     
 
 2.  *Create and activate a virtual environment:*
-    bash
     python -m venv venv
-    # On Windows
-    # venv\Scripts\activate
-    # On macOS/Linux
+    ## On Windows
+    venv\Scripts\activate
+    ## On macOS/Linux
     source venv/bin/activate
     
 
@@ -64,32 +63,31 @@ These are general steps. Adapt them based on your final project structure.
     * Configure the database connection string (see Configuration section).
     * Run database migrations if applicable (e.g., using Flask-Migrate):
         bash
-        # flask db init  (if first time)
-        # flask db migrate -m "Initial migration."
-        # flask db upgrade
+        ## flask db init  (if first time)
+        ## flask db migrate -m "Initial migration."
+        ## flask db upgrade
         
 
 ## Configuration
 
 The application requires certain environment variables for configuration. Create a .env file in the root directory or set system environment variables:
 
-# Flask Configuration
-# Or your main Flask app file
+## Flask Configuration
+## Or your main Flask app file
 FLASK_APP=run.py 
-# Use 'production' for deployment
+## Use 'production' for deployment
 FLASK_ENV=development
-# IMPORTANT: Change this!
+## IMPORTANT: Change this!
 SECRET_KEY='your_strong_random_secret_key'
 
-# Database Configuration
+## Database Configuration
 DATABASE_URL='postgresql://user:password@host:port/dbname'
-# Example for PostgreSQL
 
-# LLM API Keys
+## LLM API Keys
 GROK_API_KEY='your_grok_api_key_here'
 DEEPSEEK_API_KEY='your_deepseek_api_key_here'
 
-# Demo
+## Demo
 
 ![WhatsApp Image 2025-05-04 at 09 03 24_3d67edaf](https://github.com/user-attachments/assets/d8528a49-0da6-4274-bdd6-de48a63a8229)
 ![WhatsApp Image 2025-05-04 at 09 05 28_2a2e510f](https://github.com/user-attachments/assets/661054e1-f93e-438c-9ba0-ecd9df0a9174)
